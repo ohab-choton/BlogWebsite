@@ -1,11 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 class Category(models.Model):
     category_name=models.CharField(max_length=50,unique=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.category_name
 
 STATUS_CHOICES=(
     (0,'Draft'),
@@ -24,5 +28,16 @@ class Blogs(models.Model):
     is_featured=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Only set slug if it's not already set
+        if not self.slug:  
+            words = self.title.split()[:5]  
+            # Create a slug
+            self.slug = slugify(' '.join(words))  
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title 
 
  
