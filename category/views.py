@@ -18,5 +18,10 @@ def categoryPage(request,category_id):
 
     }
     return render(request, 'category.html',context)
+
+
+def blogs(request,slug):
+    return render(request,'blogs.html')
+
    
    
