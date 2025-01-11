@@ -1,13 +1,13 @@
 
-  {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-  {% block content %}
-
+{% block content %}
+    
     {% for post in featured_post %}
     {% if forloop.first %}
   <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{post.blog_image.url}});background-blend-mode: overlay;background-size:cover;">
     <div class="col-md-8 px-0">
-      <h1 class="display-4 font-italic">{{post.title}}</h1>
+      <h1 class="display-4 font-italic"> <a class="text-dark" href="{% url 'blogs' post.slug %}"> {{post.title}}</a> </h1>
       <p class="lead my-3">{{post.short_description}}</p>
       <p class="lead mb-0"><a href="{% url 'homePage' %}" class="text-white font-weight-bold">Continue reading...</a></p>
     </div>
@@ -22,7 +22,7 @@
     <div class="col-md-6">
       <div class="card border-1" >
         <div class="card-body">
-          <h3>{{post.title}}</h3>
+          <h3> <a class="text-dark" href="{% url 'blogs' post.slug %}"> {{post.title}}</a></h3>
           <small class="mb-1 text-muted">{{post.author}} {{post.created_at}} ago</small>
           <p class="card-text">{{post.short_description }} </p>
         </div>
@@ -40,7 +40,7 @@
       <div class="col-md-6 col-lg-4 mb-3">
         <div class="card border-1" >
             <div class="card-body" style="min-height: 180px;" >
-              <h3>{{post.title}}</h3>
+              <h3 >  <a class="text-dark" href="{% url 'blogs' post.slug %}"> {{post.title}} </a> </h3>
               <small class="mb-1 text-muted">{{post.author}}</small>
               <p class="card-text">{{post.short_description | truncatewords:20}}</p>
             </div>
@@ -71,5 +71,4 @@
   </main><!-- /.container -->
 </div>
 
-{% endblock content %}
-
+{% endblock  %}
