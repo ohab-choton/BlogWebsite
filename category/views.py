@@ -24,11 +24,19 @@ def categoryPage(request,category_id):
 
 #this is for slug when you visit with slug , then show with categories
 def blogs(request, slug):
+    single_post=get_object_or_404(Blogs,slug=slug,status=1)
+
     categories = Category.objects.all()
     context = {
         'categories': categories,
+        'single_post': single_post
     }
     return render(request, 'blogs.html', context)
+
+#search
+def search(request):
+    
+    return render(request,'search.html')
 
 
    

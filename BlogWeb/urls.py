@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.conf import settings
 from django.conf.urls.static import static
+from category import views as blogsVies
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('home.urls')),
     path('category/',include('category.urls')),
+    path('blog/search/', blogsVies.search ,name='search'),
+    
 ]
 
 if settings.DEBUG:
