@@ -1,1 +1,22 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="pt-4 text-uppercase text-bold text-info ">search by - {{keyword}}</h1>
+<main role="main" class="container p-0 ">
+    <div class="row">
+      {% for i in blogs %}
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card border-1" >
+            <div class="card-body" style="min-height: 180px;" >
+              <h3> <a class="text-dark" href="{% url 'blogs' i.slug %}"> {{i.title}}</a></h3>
+              <small class="mb-1 text-muted"> {{i.author}}</small>
+              <p class="card-text">{{i.short_description | truncatewords:20}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+{% endblock %}

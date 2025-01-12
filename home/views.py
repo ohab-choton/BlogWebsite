@@ -9,6 +9,7 @@ def homePage(request):
     categories=Category.objects.all()
     featured_post=Blogs.objects.filter(is_featured=True,status=1)
     posts=Blogs.objects.filter(is_featured=False,status=1)
+    print(posts)
     
     context={
         'categories':categories,
