@@ -5,7 +5,8 @@ from category import views as blogsVies
 urlpatterns = [
 
     path('', views.homePage ,name='homePage'),
-    path('<slug:slug>/',blogsVies.blogs,name='blogs'),
+    path('blogs/<slug:slug>/',blogsVies.blogs,name='blogs'),
+   
     
     
 ]

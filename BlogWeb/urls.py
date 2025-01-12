@@ -19,13 +19,18 @@ from django.urls import path ,include
 from django.conf import settings
 from django.conf.urls.static import static
 from category import views as blogsVies
+from home import views as homeVies
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('home.urls')),
     path('category/',include('category.urls')),
-    path('blog/search/', blogsVies.search ,name='search'),
+    path('blog/search/',blogsVies.search ,name='search'),
+    path('register/',homeVies.registerPage ,name='registerPage'),
+    path('login/',homeVies.loginPage ,name='loginPage'),
+    path('logout/',homeVies.logoutPage ,name='logoutPage'),
+    
     
 ]
 
