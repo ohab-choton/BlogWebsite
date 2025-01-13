@@ -8,6 +8,9 @@
     {% include 'leftSideBar.html' %}
     <!--right sidebar-->
     <div class="col-md-9">
+        <h3> All Categories </h3>
+        <a href="{% url 'addCategoryPage' %}" class="btn btn-dark float-right mb-2 ">Add New Category</a>
+        
 
         <table class="table table-hover">
             <thead>
@@ -27,13 +30,9 @@
                 <td>{{cat.category_name}}</td>
                 <td>{{cat.created_at}}</td>
                 <td>{{cat.updated_at}}</td>
-                <td> <a href="">  delete  </a> |<a href=""> edit</a> </td>
-                
+                <td> <a href="" class="text-danger ">  Delete  </a> |<a href="" class="text-success "> Edit</a> </td>
               </tr>
               {% endfor %}
-
-              
-            
             </tbody>
           </table>
 

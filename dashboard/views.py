@@ -25,3 +25,11 @@ def category_1(request):
         'categories':categories
     }
     return render(request,'category1.html',context)
+
+#add category
+def addCategory(request):
+    categories = Category.objects.all()
+    context={
+        'categories':categories
+    }
+    return render(request,'addCategory.html',context)
