@@ -50,7 +50,7 @@ def loginPage(request):
             user=auth.authenticate(username=username,password=password)
             if user is not None:
                 auth.login(request,user)
-                return redirect('homePage')
+                return redirect('dashboardPage')
     form=AuthenticationForm()
     context={
         'form':form

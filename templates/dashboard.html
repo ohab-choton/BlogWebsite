@@ -1,1 +1,43 @@
-<h1>Dashboard page</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <!--left sidebar-->
+    <!--load Side bar-->
+    {% include 'leftSideBar.html' %}
+    
+    <!--right sidebar-->
+    <div class="col-md-9">
+
+        <div class="row">
+            <div class="col">
+                <div class="card border-default mb-3">
+                    <div class="card-header text-center text-uppercase font-weight-bold "> 
+                        <h3>All Categories</h3>
+                    </div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title text-center">{{categories_count}} </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card border-default mb-3">
+                    <div class="card-header text-center text-uppercase font-weight-bold "> 
+                        <h3>All Post</h3>
+                    </div>
+                    <div class="card-body text-dark">
+                            <!-- blogs_count  came from dashboard views -->
+                        <h5 class="card-title text-center">{{blogs_count}}</h5>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <!--left sidebar-->
+    {% include 'leftSideBar.html' %}
+    <!--right sidebar-->
+    <div class="col-md-9">
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Category Name</th>
+                <th >Created</th>
+                <th >Updated</th>
+                <th> Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for cat in categories %}
+              <tr>
+                <th >{{ forloop.counter }}</th>
+                <td>{{cat.category_name}}</td>
+                <td>{{cat.created_at}}</td>
+                <td>{{cat.updated_at}}</td>
+                <td> <a href="">  delete  </a> |<a href=""> edit</a> </td>
+                
+              </tr>
+              {% endfor %}
+
+              
+            
+            </tbody>
+          </table>
+
+    </div>
+</div>
+
+
+{% endblock %}
