@@ -48,12 +48,13 @@ def addCategory(request):
 #edit category
 def editCategory(request,pk):
     cat=get_object_or_404(Category,pk=pk)
-    form=CategoryForm( instance=cat) 
     if request.method=='POST':
         form=CategoryForm(request.POST,instance=cat)
         if form.is_valid():
             form.save()
             return redirect('category_1Page')
+    form=CategoryForm( instance=cat) 
+    
     context={
         'form':form,
         'cat':cat
