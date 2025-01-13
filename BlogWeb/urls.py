@@ -30,8 +30,8 @@ urlpatterns = [
     path('register/',homeVies.registerPage ,name='registerPage'),
     path('login/',homeVies.loginPage ,name='loginPage'),
     path('logout/',homeVies.logoutPage ,name='logoutPage'),
-    
-    
+    path('dashboard/',include('dashboard.urls')),
+       
 ]
 
 if settings.DEBUG:
