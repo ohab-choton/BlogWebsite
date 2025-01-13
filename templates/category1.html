@@ -30,7 +30,8 @@
                 <td>{{cat.category_name}}</td>
                 <td>{{cat.created_at}}</td>
                 <td>{{cat.updated_at}}</td>
-                <td> <a href="" class="text-danger ">  Delete  </a> |<a href="{% url 'editCategoryPage' cat.id %}" class="text-success "> Edit</a> </td>
+                                                        <!-- here is id primary key of category-->
+                <td> <a href="{% url 'deleteCategoryPage' cat.id %}" class="text-danger ">  Delete  </a> |<a href="{% url 'editCategoryPage' cat.id %}" class="text-success "> Edit</a> </td>
               </tr>
               {% endfor %}
             </tbody>

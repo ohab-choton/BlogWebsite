@@ -53,6 +53,7 @@ def editCategory(request,pk):
         if form.is_valid():
             form.save()
             return redirect('category_1Page')
+        
     form=CategoryForm( instance=cat) 
     
     context={
@@ -60,3 +61,10 @@ def editCategory(request,pk):
         'cat':cat
     }
     return render(request,'editCategory.html',context)
+
+#delete category
+def deleteCategory(request,pk):
+    cat=get_object_or_404(Category,pk=pk)
+    cat.delete()
+
+    return redirect('category_1Page')
