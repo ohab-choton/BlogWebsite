@@ -1,6 +1,10 @@
 <div class="col-md-3">
     <div class="nav flex-column nav-pills bg-light aria-orientation= 'vertical' ">
         <a href="{% url 'dashboardPage' %}" class=" nav-link text-dark bg-warning ">Dashboard</a>
+        {% if perms.auth.view_user %}
+        <a href="{% url 'userPage' %}" class=" nav-link text-dark bg-warning ">Users</a>
+        {% endif %}
+
         <a href="{% url 'category_1Page' %}" class=" nav-link text-dark bg-warning" >categories</a>
         <a href="{% url 'postsPage' %}" class=" nav-link text-dark bg-warning" >Posts</a>
         <a href="{% url 'homePage' %}" class=" nav-link text-dark bg-warning" >Logout</a>
