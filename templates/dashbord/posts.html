@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <!--left sidebar-->
+    {% include '../dashbord/leftSideBar.html' %}
+    <!--right sidebar-->
+    <div class="col-md-9">
+        <h3> All Posts </h3>
+        <a href="{% url 'addPostPage' %}" class="btn btn-dark float-right mb-2 ">Add New Post</a>
+        
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th >Id</th>
+                <th >Title</th>
+                <th >Category</th>
+                <th >Author</th>
+                <th> Status</th>
+                <th> Featured</th>
+                <th> Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <!-- posts came form dashboard views def posts-->
+                {% for post in posts %}
+              <tr>
+                <th >{{ forloop.counter }}</th>
+                <td>{{post.title}}</td>
+                <td>{{post.category}}</td>
+                <td>{{post.author}}</td>
+                <td>{{post.status}}</td>
+                <td>{{post.is_featured}}</td>
+                                                        <!-- here is id primary key of category-->
+                <td> <a href="{% url 'deleteCategoryPage' post.id %}" class="text-danger ">  Delete  </a> |<a href="{% url 'editCategoryPage' post.id %}" class="text-success "> Edit</a> </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+    </div>
+</div>
+
+{% endblock %}
