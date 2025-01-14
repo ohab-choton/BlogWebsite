@@ -85,8 +85,7 @@ def addPost(request):
         form=BlogsForm(request.POST,request.FILES) # request.FILES use for upload image
         if form.is_valid():
             form.save()
-            print("success")
-            return redirect('postsPage')
+            return redirect('postsPage') 
         
         else:
             print(form.errors)
@@ -97,6 +96,26 @@ def addPost(request):
     context= {'post':post,'categories':categories,'form':form}
     
     return render (request , 'dashbord/addPost.html',context )
+
+def editPost(request,pk):
+    post=get_object_or_404(Blogs,pk=pk)
+    if request.method=='POST':
+        form=BlogsForm(request.POST,instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('postsPage')
+    form=BlogsForm(instance=post)
+    context={
+        'form':form,
+        'post':post
+    }
+    return render(request,'dashbord/editPost.html',context)
+
+#delete post
+def deletePost(request,pk):
+    post=get_object_or_404(Blogs,pk=pk)
+    post.delete()
+    return redirect('postsPage')
 
 
           

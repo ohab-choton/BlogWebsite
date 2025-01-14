@@ -34,8 +34,8 @@
                 <td>{{post.author}}</td>
                 <td>{{post.status}}</td>
                 <td>{{post.is_featured}}</td>
-                                                        <!-- here is id primary key of category-->
-                <td> <a href="{% url 'deleteCategoryPage' post.id %}" class="text-danger ">  Delete  </a> |<a href="{% url 'editCategoryPage' post.id %}" class="text-success "> Edit</a> </td>
+                <!-- here is id primary key of Blogs model-->
+                <td> <a href="{% url 'deletePostPage' post.id %}" class="text-danger ">  Delete  </a> |<a href="{% url 'editPostPage' post.id %}" class="text-success "> Edit</a> </td>
               </tr>
               {% endfor %}
             </tbody>
