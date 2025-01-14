@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from home.models import Category,Blogs
 from django.contrib.auth.decorators import login_required
-from . forms import CategoryForm,BlogsForm
+from . forms import CategoryForm,BlogsForm,AdduserForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 
@@ -122,5 +122,13 @@ def userPage(request):
     context={'categories':categories,'users':users,'posts':posts}
 
     return render(request,'dashbord/user.html',context)
+
+def addUser(request):
+    form=AdduserForm()
+    context={'form':form}
+    
+    
+    
+    return render(request,'dashbord/addUser.html',context)
           
   
