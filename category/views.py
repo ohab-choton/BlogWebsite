@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
-from home.models import Blogs ,Category
+from home.models import Blogs ,Category,Comments
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def categoryPage(request,category_id):
@@ -26,11 +27,23 @@ def categoryPage(request,category_id):
 #this is for slug when you visit with slug , then show with categories
 def blogs(request, slug):
     single_post=get_object_or_404(Blogs,slug=slug,status=1)
-
+    ##comments
+    if request.method=='POST':
+        comment=Comments()
+        comment.user=request.user
+        comment.blog=single_post
+        # blogs.html textarea name is 'comment'
+        comment.comment=request.POST.get('comment')
+        comment.save()
+        return HttpResponseRedirect(request.path_info)
+    comments=Comments.objects.filter(blog=single_post)
+    comment_count=comments.count()
     categories = Category.objects.all()
     context = {
         'categories': categories,
-        'single_post': single_post
+        'single_post': single_post,
+        'comments':comments,
+        'comment_count':comment_count
     }
     return render(request, 'blogs.html', context)
 

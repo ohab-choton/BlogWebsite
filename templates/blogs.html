@@ -24,6 +24,42 @@
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4">{{single_post.blog_body}}</p>
+                    <h1> Comments - {{comment_count}}</h1>
+                    {% if comments %}
+                    {% for comment in comments %}
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{comment}}
+                            </p>
+                            <span>
+                                <small>
+                                user: {{ comment.user}} 
+                                </small> <br>
+                                <small>{{comment.created_at | timesince  }} ago </small>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    no comments
+                      
+                    {% endif %}
+
+                    <div class="form-group">
+                        <!-- comment form  model form  commdents class-->
+                        {% if user.is_authenticated %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea name="comment" class="form-control" placeholder="write Your Comment" ></textarea>
+                                <input type="submit" class="btn btn-primary mt-2">
+                            </div>
+                        </form>
+                        {% else %}
+                        <p>please login to write comment</p>
+                        {% endif %}
+                    </div>
                     </section>
             </article>
         </div>
