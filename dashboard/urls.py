@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('user/',views.userPage,name='userPage'),
     path('user/add',views.addUser,name='addUserPage'),
+    path('user/edit/<int:pk>',views.editUser,name='editUserPage'),
+    path('user/delete/<int:pk>',views.deleteUser,name='deleteUserPage'),
 
 
 ]

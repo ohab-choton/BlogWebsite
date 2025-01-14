@@ -16,4 +16,4 @@ class BlogsForm(forms.ModelForm):
 class AdduserForm(forms.ModelForm):
     class Meta:
         model=User
-        fields= ('first_name','last_name','username','email','password','is_staff','is_superuser','is_active','groups','user_permissions')
+        fields= ('first_name','last_name','username','email','password' ,'is_staff','is_superuser','is_active','groups','user_permissions')

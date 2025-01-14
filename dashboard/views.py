@@ -113,6 +113,10 @@ def deletePost(request,pk):
 
 
 
+
+
+
+#user SEction
 def userPage(request):
     posts=Blogs.objects.all()
     categories=Category.objects.all()
@@ -124,11 +128,29 @@ def userPage(request):
     return render(request,'dashbord/user.html',context)
 
 def addUser(request):
+    if request.method=='POST':
+        form=AdduserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('userPage')
     form=AdduserForm()
     context={'form':form}
-    
-    
-    
     return render(request,'dashbord/addUser.html',context)
+
+def editUser(request,pk):
+    user=get_object_or_404(User,pk=pk)
+    if request.method=='POST':
+        form=AdduserForm(request.POST,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('userPage')
+    form=AdduserForm(instance=user)
+    context={'form':form,'user':user}
+    return render(request,'dashbord/editUser.html',context)
+
+def deleteUser(request,pk):
+    user=get_object_or_404(User,pk=pk)
+    user.delete()
+    return redirect('userPage')
           
   
