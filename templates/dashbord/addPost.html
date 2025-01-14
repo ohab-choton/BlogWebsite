@@ -10,7 +10,7 @@
     <!--right sidebar-->
     <div class="col-md-9">
         <h3 > Add New Post </h3>
-    <form action="" method="POST" style=" width: 400px; " >
+    <form action="" method="POST" style=" width: 400px; " enctype="multipart/form-data" >
         {% csrf_token %}
         {{form | crispy }} 
         <button type="submit"  class="btn btn-primary">Submit</button>

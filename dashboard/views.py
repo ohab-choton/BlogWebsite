@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from home.models import Category,Blogs
 from django.contrib.auth.decorators import login_required
-from . forms import CategoryForm
+from . forms import CategoryForm,BlogsForm
 from django.shortcuts import get_object_or_404
 
 
@@ -72,25 +72,30 @@ def deleteCategory(request,pk):
 #posts page
 def posts(request):
     posts=Blogs.objects.all()
-
     categories=Category.objects.all()
     context= {
         'categories':categories,
         'posts':posts,
-        
         }
     return render(request,'dashbord/posts.html',context)
 
 #add_post
 def addPost(request):
+    if request.method=='POST':
+        form=BlogsForm(request.POST,request.FILES) # request.FILES use for upload image
+        if form.is_valid():
+            form.save()
+            print("success")
+            return redirect('postsPage')
+        
+        else:
+            print(form.errors)
     post=Blogs.objects.all()
     categories=Category.objects.all()
-
-
-    context= {
-        'post':post,
-        'categories':categories
-    }
+    form= BlogsForm()
+   
+    context= {'post':post,'categories':categories,'form':form}
+    
     return render (request , 'dashbord/addPost.html',context )
 
 
